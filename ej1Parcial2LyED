@@ -1,0 +1,50 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package listas;
+
+import java.util.Scanner;
+/**
+ *
+ * @author loren
+ */
+public class Listas {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Scanner sc = new Scanner (System.in);
+        System.out.println("Ingrese dimension");
+        int N=sc.nextInt();
+        int [ ] vectorA;
+        vectorA = new int [N];
+        System.out.println("Ingrese valores a la lista");
+        for (int i = 0; i < N; i++) {
+            int V=sc.nextInt();
+            vectorA[i]=V;
+        }
+        int [ ] vectorB;
+        vectorB = new int [N];
+        for (int i = 0; i < N; i++) {
+            vectorB[i]=(vectorA[i]*vectorA[i]);
+        }
+        System.out.println("Lista B: ");
+        for (int i = 0; i < N; i++) {
+            System.out.println(vectorB[i]);
+        }
+        int [ ] vectorC;
+        vectorC = new int [N];
+        for (int i = 0; i < N; i++) {
+            vectorC[N-1-i]=vectorB[i];
+        }
+        System.out.println("Lista C: ");
+        for (int i = 0; i < N; i++) {
+            System.out.println(vectorC[i]);
+        }
+    }
+    
+}
