@@ -1,0 +1,50 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package ej1parciallyed;
+
+import java.util.Scanner;
+/**
+ *
+ * @author loren
+ */
+public class Ej1ParcialLyED {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Scanner sc = new Scanner (System.in);
+        
+        int ed;
+        int c=0;
+        int i=0;
+        int j=0;
+        int acum=0;
+        float prom;
+        System.out.println("Ingrese edades");
+        do {
+            ed = sc.nextInt();
+            if (ed >= 0) {
+                acum += ed;
+                i++;
+                if (ed >= 15 && ed <= 25) {
+                c++;
+                }
+                if (ed >= 40 && ed <= 50) {
+                j++;
+                }
+            }
+        } while (ed != 0);
+        
+        prom = (acum / i);
+        
+        System.out.println("El promedio es: " + prom);
+        System.out.println("Los alumnos entre 15 y 25 años son: " + c);
+        System.out.println("Los alumnos entre 40 y 50 años son:" + j);
+    }
+    
+}
