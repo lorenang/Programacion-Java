@@ -1,0 +1,81 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package pracevalej3;
+import java.util.Scanner;
+/**
+ *
+ * @author loren
+ */
+public class PracEvalEj3 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.println("Ingrese dimension");
+        int N = sc.nextInt();
+        int V;
+        
+        int [ ] arregloA;
+        arregloA = new int [N];
+        
+        int [ ] arregloB;
+        arregloB = new int [N];
+        
+        int D = N*2;
+        int [ ] arregloC;
+        arregloC = new int [D];
+        
+        System.out.println("Ingrese valores a la lista A");
+        for (int i = 0; i < N; i++) {
+            V = sc.nextInt();
+            arregloA[i] = V;
+        }
+        
+        System.out.println("Ingrese valores a la lista B");
+        for (int i = 0; i < N; i++) {
+            V = sc.nextInt();
+            arregloB[i] = V;
+        }
+        
+        System.out.println("Lista A: ");
+        for (int i = 0; i < N; i++) {
+            System.out.println(arregloA[i]);
+        }
+        System.out.println("Lista B: ");
+        for (int i = 0; i < N; i++) {
+            System.out.println(arregloB[i]);
+        }
+        
+        System.arraycopy(arregloA, 0, arregloC, 0, N);
+        System.arraycopy(arregloB, 0, arregloC, N, N);
+        System.out.println("Lista C");
+        for (int i = 0; i < D; i++) {
+            System.out.println(arregloC[i]);
+        }
+        int [ ] arregloD;
+        arregloD = new int [N];
+        int [ ] arregloE;
+        arregloE = new int [N];
+        int l=0;
+        int t=0;
+        System.out.println("Lista D:");
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (arregloB[j] == arregloA[i]) {
+                    j=N;
+                    arregloD[t] = arregloA[i];
+                    System.out.println(arregloD[t]);
+                    t++;
+                } 
+            }
+        }     
+    }
+    
+}
