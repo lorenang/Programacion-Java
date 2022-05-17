@@ -1,0 +1,250 @@
+// Clase Deudor
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package calcdeudores;
+
+/**
+ *
+ * @author loren
+ */
+public class deudor {
+     private int DNI;
+    private String Apellido;
+    private String Nombre;
+    private int DNICotitular;
+    private String ApellidoCotitular;
+    private String NombreCotitular;
+    private float MontoAdeudado;
+    private int AnioDeuda;
+
+    public deudor() {
+        DNI = 0;
+        Apellido = "";
+        Nombre = "";
+        DNICotitular = 0;
+        ApellidoCotitular = "";
+        NombreCotitular = "";
+        MontoAdeudado = 0;
+        AnioDeuda = 0;
+    }
+
+    public deudor(int DNI, String Apellido, String Nombre, int DNICotitular, String ApellidoCotitular, String NombreCotitular, float MontoAdeudado, int AnioDeuda) {
+        this.DNI = DNI;
+        this.Apellido = Apellido;
+        this.Nombre = Nombre;
+        this.DNICotitular = DNICotitular;
+        this.ApellidoCotitular = ApellidoCotitular;
+        this.NombreCotitular = NombreCotitular;
+        this.MontoAdeudado = MontoAdeudado;
+        this.AnioDeuda = AnioDeuda;
+    }
+
+    public float CalcularDeudaActual(int anioActual) {
+        float deudaActual = MontoAdeudado + ((MontoAdeudado * 21 / 100) * (anioActual - AnioDeuda));
+        return deudaActual;
+    }
+
+    public float RealizarPlanDePago(int c, int anioActual) {
+        float deudaActual = CalcularDeudaActual(anioActual);
+        float cuota, plan = 0;
+        if (c >= 7 && c <= 12) {
+            plan = deudaActual + (deudaActual * 19 / 100);
+
+        } else {
+            if (c >= 4 && c <= 6) {
+                plan = deudaActual + (deudaActual * 10 / 100);
+            } else {
+                plan = deudaActual;
+            }
+        }
+        cuota = plan / c;
+        return cuota;
+
+    }
+
+    public void CambiarCotitular(int dni, String a, String n) {
+        this.DNICotitular = dni;
+        this.ApellidoCotitular = a;
+        this.NombreCotitular = n;
+        this.MontoAdeudado = MontoAdeudado + (MontoAdeudado * 5 / 100);
+    }
+
+    public String toString() {
+        String cadena = "Nombre: " + Nombre + "\n"
+                + "Apellido: " + Apellido + "\n"
+                + "DNI: " + DNI + "\n"
+                + "Deuda: " + MontoAdeudado + "\n"
+                + "Año de la deuda: " + AnioDeuda;
+        return cadena;
+    }
+
+    public int getDNI() {
+        return DNI;
+    }
+
+    public String getApellido() {
+        return Apellido;
+    }
+
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public int getDNICotitular() {
+        return DNICotitular;
+    }
+
+    public String getApellidoCotitular() {
+        return ApellidoCotitular;
+    }
+
+    public String getNombreCotitular() {
+        return NombreCotitular;
+    }
+
+    public float getMontoAdeudado() {
+        return MontoAdeudado;
+    }
+
+    public int getAnioDeuda() {
+        return AnioDeuda;
+    }
+
+    public void setDNI(int DNI) {
+        this.DNI = DNI;
+    }
+
+    public void setApellido(String Apellido) {
+        this.Apellido = Apellido;
+    }
+
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
+    }
+
+    public void setDNICotitular(int DNICotitular) {
+        this.DNICotitular = DNICotitular;
+    }
+
+    public void setApellidoCotitular(String ApellidoCotitular) {
+        this.ApellidoCotitular = ApellidoCotitular;
+    }
+
+    public void setNombreCotitular(String NombreCotitular) {
+        this.NombreCotitular = NombreCotitular;
+    }
+
+    public void setMontoAdeudado(float MontoAdeudado) {
+        this.MontoAdeudado = MontoAdeudado;
+    }
+
+    public void setAnioDeuda(int AnioDeuda) {
+        this.AnioDeuda = AnioDeuda;
+    }
+}
+
+//Clase Principal
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package calcdeudores;
+ import java.util.Scanner;
+import java.util.Calendar;
+/**
+ *
+ * @author loren
+ */
+public class CalcDeudores {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+    Scanner sc = new Scanner(System.in);
+        deudor d = new deudor();
+
+        System.out.println("----Ingrese datos personales---");
+        System.out.println("DNI:");
+        d.setDNI(sc.nextInt());
+        System.out.println("Apellido:");
+        d.setApellido(sc.next());
+        System.out.println("Nombre:");
+        d.setNombre(sc.next());
+        System.out.println("DNI Cotitular");
+        d.setDNICotitular(sc.nextInt());
+        System.out.println("Apellido Cotitular");
+        d.setApellidoCotitular(sc.next());
+        System.out.println("Nombre Cotitular");
+        d.setNombreCotitular(sc.next());
+        System.out.println("Monto Adeudado");
+        d.setMontoAdeudado(sc.nextFloat());
+        System.out.println("Año de la deuda");
+        d.setAnioDeuda(sc.nextInt());
+
+        int opcion;
+        do {
+            System.out.println("\n ---MENU DE OPCIONES---");
+            System.out.println("1- Calcular Deuda Actual:");
+            System.out.println("2- Realizar Plan de Pago");
+            System.out.println("3- Cambiar Cotitular");
+            System.out.println("4- Ver datos personales del deudor");
+            System.out.println("5- Ver datos personales del cotitular");
+            System.out.println("6- Ver todos los datos del deudor");
+            System.out.println("0- Salir");
+            System.out.println("\n Ingrese la opción deseada ");
+            opcion = sc.nextInt();
+            System.out.println("\n");
+            Calendar cal = Calendar.getInstance();
+            int year = cal.get(Calendar.YEAR);
+
+            switch (opcion) {
+                case 1:
+                    System.out.println("La deuda actual es: " + d.CalcularDeudaActual(year));
+                    break;
+                case 2:
+                    System.out.println("Ingrese las cuotas que desea: (1 a 12)");
+                    int cuotas = sc.nextInt();
+                    float m = d.RealizarPlanDePago(cuotas,year);
+                    System.out.println("El monto de cada cuota es: " + m);
+                    break;
+                case 3:
+                    System.out.println("Ingrese los datos del nuevo cotitular: ");
+                    System.out.println("DNI: ");
+                    int dni = sc.nextInt();
+                    System.out.println("Apellido:");
+                    String a = sc.next();
+                    System.out.println("Nombre:");
+                    String n = sc.next();
+                    d.CambiarCotitular(dni, a, n);
+                    break;
+                case 4:
+                    System.out.println("Datos personales del deudor");
+                    System.out.println("Apellido: " + d.getApellido());
+                    System.out.println("Nombre: " + d.getNombre());
+                    System.out.println("DNI: " + d.getDNI());
+                    break;
+                case 5:
+                    System.out.println("Datos personales del cotitular");
+                    System.out.println("Apellido: " + d.getApellidoCotitular());
+                    System.out.println("Nombre: " + d.getNombreCotitular());
+                    System.out.println("DNI: " + d.getDNICotitular());
+                    break;
+                case 6:
+                    System.out.println("Datos del deudor");
+                    System.out.println(d.toString());
+                    break;
+            }
+
+        } while (opcion != 0);
+    }
+    
+}
+
