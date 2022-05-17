@@ -1,0 +1,55 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package ej1parcialpi;
+
+import java.util.Scanner;
+/**
+ *
+ * @author loren
+ */
+public class Ej1ParcialPI {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Scanner sc = new Scanner (System.in);
+        
+        System.out.println("Ingrese cantidad de hamburguesas, tipo y medio de pago");
+        
+        int N = sc.nextInt();
+        String TI = sc.next();
+        String TP = sc.next();
+        
+        int PA;
+        int TO;
+        float CA;
+        float TOT;
+        if ("Sencilla".equals(TI)) {
+            PA = 20;
+        } else {
+            if ("Doble".equals(TI)) {
+            PA = 25;
+            } else {
+            PA = 28;
+            }
+        }
+        TO = (PA*N);
+        
+        if ("TAR".equals(TP)) {
+            CA = (int) (TO * 0.05);
+        } else {
+            CA = 0;
+        }
+        TOT = (TO + CA);
+        System.out.println("Precio de cada hamburguesa :" + PA);
+        System.out.println("Total de hamburguesas: " + TO);
+        System.out.println("Recargo :" + CA);
+        System.out.println("Total: " + TOT);
+    }
+    
+}
